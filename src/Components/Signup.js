@@ -1,30 +1,53 @@
 import React, { useContext, useState } from "react";
 import { loginContext } from "../contexts/loginContext";
+import Input from "./Input";
+import { FormProvider, useForm } from "react-hook-form";
 import axios from "axios";
+import {
+  name_validation,
+  con_password_validation,
+  email_validation,
+  password_validation,
+} from "../utils/inputValidations";
+import { BsFillCheckSquareFill } from "react-icons/bs";
 import { UserContext } from "../contexts/UserContext";
+import { toast } from "react-hot-toast";
 
 export default function Signup() {
   const { clickSignup, setclickSignup } = useContext(loginContext);
   const { setId, setusername } = useContext(UserContext);
+  const [success, setSuccess] = useState(false);
+  const methods = useForm();
 
-  const [username, setName] = useState();
-  const [email, setUserEmail] = useState();
-  const [password, setUserPassword] = useState();
-  const [signedup, setsignedup] = useState(false);
-
-  async function createUser(ev) {
-    ev.preventDefault();
-    let data = await axios.post("/register", { username, email, password });
-    setId(data._id);
-    setusername(data);
-  }
+  const onSubmit = methods.handleSubmit(
+    async ({ email, name, password }, ev) => {
+      ev.preventDefault();
+      // console.log(email,name,password);
+      let data = await axios.post("/register", {
+        username: name,
+        email,
+        password,
+      });
+      setId(data._id);
+      setusername(data);
+      toast.success("Congratulations!!! You have signed up");
+      methods.reset();
+      setSuccess(true);
+      setclickSignup(false);
+    }
+  );
 
   return (
     clickSignup && (
-      <div className="flex justify-center">
-        <div className="container-sm mt-5 border max-w-4xl bg-white rounded-md z-10 absolute top-[50px]  h-520px]">
-          <header className="flex fle justify-between">
-            <div className="text-2xl pt-2 px-3 font-medium ">Sign up</div>
+      <FormProvider {...methods}>
+        <form
+          onSubmit={(e) => e.preventDefault()}
+          noValidate
+          autoComplete="off"
+          className="container-sm p-3 z-10 rounded-md absolute top-20 bg-white border-2 border-gray-300 left-[85px]"
+        >
+          <header className="flex fle justify-between mb-4">
+            <div className="text-2xl pt-2 px-3 font-medium ">Sign Up</div>
             <div className="mt-[12px] mr-[6px] hover:cursor-pointer">
               <svg
                 onClick={() => {
@@ -38,107 +61,29 @@ export default function Signup() {
                 className="w-6 h-6"
               >
                 <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
                   d="M6 18L18 6M6 6l12 12"
                 />
               </svg>
             </div>
           </header>
-          <form className="p-3 text-black ">
-            <div className="mb-3 ">
-              <label htmlFor="name" className="form-label">
-                Enter your Name
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="name"
-                aria-describedby="nameHelp"
-                placeholder="Enter your name"
-                required
-                onChange={(ev) => {
-                  setName(ev.target.value);
-                }}
-              />
-            </div>
-            <div className="mb-3 ">
-              <label htmlFor="exampleInputEmail1" className="form-label">
-                Email address
-              </label>
-              <input
-                type="email"
-                className="form-control"
-                id="exampleInputEmail1"
-                aria-describedby="emailHelp"
-                placeholder="Enter your Email Address"
-                required
-                onChange={(ev) => {
-                  setUserEmail(ev.target.value);
-                }}
-              />
-              <div id="emailHelp" className="form-text text-black">
-                We'll never share your email with anyone else.
-              </div>
-            </div>
-            <div className="mb-3">
-              <label htmlFor="pass" className="form-label">
-                Password
-              </label>
-              <input
-                type="password"
-                className="form-control"
-                id="pass"
-                placeholder="Enter your Password"
-                autoComplete="section-blue shipping address-level2"
-                required
-                onChange={(ev) => {
-                  setUserPassword(ev.target.value);
-                }}
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="confirm_pass" className="form-label">
-                Confirm Password
-              </label>
-              <input
-                type="password"
-                className="form-control"
-                id="confirm_pass"
-                placeholder="Confirm Password"
-                autoComplete="section-blue shipping address-level2"
-                required
-              />
-            </div>
-
-            <div className="mb-3 form-check">
-              <input
-                type="checkbox"
-                className="form-check-input"
-                id="exampleCheck1"
-                required
-              />
-              <label className="form-check-label" htmlFor="exampleCheck1">
-                I agree to Zomato's{" "}
-                <span className="text-red-500"> Terms of Service,</span>
-                <span className="text-red-500"> Privacy Policy</span> and{" "}
-                <span className="text-red-500">Content Policies</span>
-              </label>
-            </div>
+          <div className="grid gap-3 md:grid-row">
+            <Input {...name_validation} />
+            <Input {...email_validation} />
+            <Input {...password_validation} />
+            <Input {...con_password_validation} />
+          </div>
+          <div className="mt-4 ">
             <button
-              to="/"
-              type="submit"
-              className="btn bg-red-500 text-white hover:bg-red-600 "
-              onClick={createUser}
-              onMouseDown={() => {
-                setclickSignup(false);
-              }}
+              onClick={onSubmit}
+              className="p-[10px]  rounded-md bg-blue-600 font-semibold text-lg text-white flex items-center gap-1 hover:bg-blue-800"
             >
-              Submit
+              Create Account
             </button>
-          </form>
-        </div>
-      </div>
+          </div>
+        </form>
+      </FormProvider>
     )
   );
 }

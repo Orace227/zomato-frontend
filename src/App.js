@@ -12,6 +12,7 @@ import { LoginContextProvider } from "./contexts/loginContext";
 import { UserContextProvider } from "./contexts/UserContext";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Abd from "./Components/Abd";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   axios.defaults.baseURL = "http://localhost:4040";
@@ -28,6 +29,7 @@ function App() {
                   <UserContextProvider>
                     <Login />
                     <Signup />
+                    <Toaster />
                   </UserContextProvider>
                   <Head />
                   <Head2 />
