@@ -15,7 +15,6 @@ import Abd from "./Components/Abd";
 import { Toaster } from "react-hot-toast";
 
 function App() {
-  axios.defaults.baseURL = "http://localhost:4040";
   return (
     <>
       <Router>
@@ -25,8 +24,8 @@ function App() {
             element={
               <LoginContextProvider>
                 <DropdownItemContextProvider>
-                  <Navbar />
                   <UserContextProvider>
+                    <Navbar />
                     <Login />
                     <Signup />
                     <Toaster />

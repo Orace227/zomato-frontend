@@ -44,6 +44,7 @@ export const password_validation = {
     required: {
       value: true,
       message: "required",
+      autoComplete: "current_password",
     },
     minLength: {
       value: 6,
@@ -53,15 +54,16 @@ export const password_validation = {
 };
 
 export const con_password_validation = {
-  name: "password",
-  label: "password",
+  name: "con_password",
+  label: "con_password",
   type: "password",
-  id: "password",
+  id: "con_password",
   placeholder: "Confirm Your Password ...",
   validation: {
     required: {
       value: true,
       message: "required",
+      autoComplete: "new_password",
     },
     minLength: {
       value: 6,

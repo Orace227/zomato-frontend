@@ -3,38 +3,43 @@ import { loginContext } from "../contexts/loginContext";
 import Input from "./Input";
 import { FormProvider, useForm } from "react-hook-form";
 import axios from "axios";
+import { toast } from "react-hot-toast";
 import {
   name_validation,
   con_password_validation,
   email_validation,
   password_validation,
 } from "../utils/inputValidations";
-import { UserContext } from "../contexts/UserContext";
-import { toast } from "react-hot-toast";
+// import { UserContext } from "../contexts/UserContext";
 
 export default function Signup() {
   const { clickSignup, setclickSignup } = useContext(loginContext);
-  const { setId, setusername } = useContext(UserContext);
+  // const { setId, setUsername } = useContext(UserContext);
   const [success, setSuccess] = useState(false);
   const methods = useForm();
 
-  const onSubmit = methods.handleSubmit(
-    async ({ email, name, password }, ev) => {
-      ev.preventDefault();
-      // console.log(email,name,password);
-      let data = await axios.post("/register", {
+  const onSubmit = methods.handleSubmit(async ({ email, name, password }) => {
+    try {
+      let signedUser = await axios.post("/signup", {
         username: name,
         email,
         password,
       });
-      setId(data._id);
-      setusername(data);
-      toast.success("Congratulations!!! You have signed up");
-      methods.reset();
-      setSuccess(true);
-      setclickSignup(false);
+      if (signedUser) {
+        toast.success("Congratulations!!! You have signed up");
+        setclickSignup(false);
+        setSuccess(true);
+        methods.reset();
+
+        window.location.reload();
+      }
+    } catch (error) {
+      // console.log(error.message);
+      if (error.message === "Network Error") {
+        toast.error("Unable to establish a database connection!!");
+      }
     }
-  );
+  });
 
   return (
     clickSignup && (
@@ -61,8 +66,8 @@ export default function Signup() {
                   className="w-6 h-6"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     d="M6 18L18 6M6 6l12 12"
                   />
                 </svg>
@@ -77,7 +82,7 @@ export default function Signup() {
             <div className="mt-4 ">
               <button
                 onClick={onSubmit}
-                className="p-[10px]  rounded-md bg-blue-600 font-semibold text-lg text-white flex items-center gap-1 hover:bg-blue-800"
+                className="p-[10px] rounded-md bg-blue-600 font-semibold text-lg text-white flex items-center gap-1 hover:bg-blue-800"
               >
                 Create Account
               </button>

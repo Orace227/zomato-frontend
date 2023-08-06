@@ -1,9 +1,15 @@
 import React, { useContext, useState } from "react";
 import { loginContext } from "../contexts/loginContext";
 import SearchBar from "./SearchBar";
+import { UserContext } from "../contexts/UserContext";
+import axios from "axios";
+
 export default function Navbar() {
   const [hamburgur, setHamBurgur] = useState(false);
+  const [dropdownInformation, setdropdownInformation] = useState(false);
   const { setclickLogin, setclickSignup } = useContext(loginContext);
+  const { username } = useContext(UserContext);
+
   return (
     <>
       {/* hamburgur icon */}
@@ -85,26 +91,155 @@ export default function Navbar() {
               <li className="cursor-pointer p-1 md:hover:scale-125 hover:transition-all delay-100">
                 Add restaurant
               </li>
-              <li
-                className="cursor-pointer p-1 md:hover:scale-125 hover:transition-all delay-100"
-                onClick={() => {
-                  setclickLogin(true);
-                  setclickSignup(false);
-                  setHamBurgur(false);
-                }}
-              >
-                Log in
-              </li>
-              <li
-                className="cursor-pointer p-1 md:hover:scale-125 hover:transition-all delay-100"
-                onClick={() => {
-                  setclickSignup(true);
-                  setclickLogin(false);
-                  setHamBurgur(false);
-                }}
-              >
-                Sign up
-              </li>
+              {username && (
+                <li className=" flex flex-row gap-2 my-1 cursor-pointer p-1">
+                  <div className=" flex items-center relative -top-2 text-lg md:border-3  p-[5px] px-[13px]  rounded-full bg-red-500">
+                    {username.charAt(0).toUpperCase()}
+                  </div>
+                  <div>
+                    <button
+                      id="dropdownInformationButton"
+                      data-dropdown-toggle="dropdownInformation"
+                      className=" text-black md:text-white font-medium rounded-lg text-sm text-center flex items-center "
+                      type="button"
+                      onClick={() => {
+                        dropdownInformation
+                          ? setdropdownInformation(false)
+                          : setdropdownInformation(true);
+                      }}
+                    >
+                      {username.charAt(0).toUpperCase()}
+                      {username.slice(1)}
+                      <svg
+                        className="w-2.5 h-2.5 ml-2.5"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 10 6"
+                      >
+                        <path
+                          stroke="currentColor"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="m1 1 4 4 4-4"
+                        />
+                      </svg>
+                    </button>
+
+                    <div
+                      id="dropdownInformation"
+                      className={`z-10 ${
+                        dropdownInformation ? "" : "hidden"
+                      } bg-white absolute text-black rounded-lg shadow w-44`}
+                    >
+                      <div className="px-4 py-3 text-sm text-gray-900">
+                        <div>
+                          {username.charAt(0).toUpperCase()}
+                          {username.slice(1)}
+                        </div>
+                        <div className="font-medium truncate">
+                          name@flowbite.com
+                        </div>
+                      </div>
+                      <hr />
+                      <ul
+                        className="py-2 text-sm text-gray-700 "
+                        aria-labelledby="dropdownInformationButton"
+                      >
+                        <li>
+                          <a
+                            href="#"
+                            className="block px-4 py-2 hover:bg-gray-100  "
+                          >
+                            Profile
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href="#"
+                            className="block px-4 py-2 hover:bg-gray-100  "
+                          >
+                            Notification
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href="#"
+                            className="block px-4 py-2 hover:bg-gray-100"
+                          >
+                            Bookmarks
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href="#"
+                            className="block px-4 py-2 hover:bg-gray-100"
+                          >
+                            Network
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href="#"
+                            className="block px-4 py-2 hover:bg-gray-100"
+                          >
+                            Find Friends
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href="#"
+                            className="block px-4 py-2 hover:bg-gray-100"
+                          >
+                            Settings
+                          </a>
+                        </li>
+                      </ul>
+                      <hr />
+                      <div className="py-2">
+                        <a
+                          href="/"
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 "
+                          onClick={(e) => {
+                            e.preventDefault();
+                            axios.get("/logout").then(() => {
+                              window.location.reload();
+                            });
+                          }}
+                        >
+                          Log out
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div></div>
+                </li>
+              )}
+              {!username && (
+                <ul className="md:flex gap-7">
+                  <li
+                    className="cursor-pointer p-1 md:hover:scale-125 hover:transition-all delay-100"
+                    onClick={() => {
+                      setclickLogin(true);
+                      setclickSignup(false);
+                      setHamBurgur(false);
+                    }}
+                  >
+                    Log in
+                  </li>
+                  <li
+                    className="cursor-pointer p-1 md:hover:scale-125 hover:transition-all delay-100"
+                    onClick={() => {
+                      setclickSignup(true);
+                      setclickLogin(false);
+                      setHamBurgur(false);
+                    }}
+                  >
+                    Sign up
+                  </li>
+                </ul>
+              )}
             </ul>
           </nav>
         </div>

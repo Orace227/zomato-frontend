@@ -2,35 +2,43 @@ import React, { useContext, useState } from "react";
 import { loginContext } from "../contexts/loginContext";
 import Input from "./Input";
 import { FormProvider, useForm } from "react-hook-form";
-// import axios from "axios";
+import axios from "axios";
 import {
   email_validation,
   password_validation,
 } from "../utils/inputValidations";
 import { toast } from "react-hot-toast";
+import { UserContext } from "../contexts/UserContext";
 
 export default function Login() {
   const { clickLogin, setclickLogin } = useContext(loginContext);
   const [success, setSuccess] = useState(false);
   const methods = useForm();
 
-  const onSubmit = methods.handleSubmit(
-    async ({ email, name, password }, ev) => {
+  const onSubmit = methods.handleSubmit(async ({ email, password }, ev) => {
+    try {
       ev.preventDefault();
-      // console.log(email,name,password);
-      //   let data = await axios.post("/register", {
-      //     username: name,
-      //     email,
-      //     password,
-      //   });
-      //   setId(data._id);
-      //   setusername(data);
-      toast.success("Congratulations!! You are Logged in");
-      methods.reset();
-      setSuccess(true);
-      setclickLogin(false);
+      let Loggedin = await axios.post("/login", {
+        email,
+        password,
+      });
+      if (Loggedin) {
+        console.log(Loggedin.data);
+        toast.success("Congratulations!! You are Logged in");
+        setSuccess(true);
+        setclickLogin(false);
+        methods.reset();
+      }
+    } catch (error) {
+      // console.log(error.message);
+      if (error.message === "Network Error") {
+        toast.error("Unable to establish a database connection!!");
+      }
+      if (error.message === "Request failed with status code 401") {
+        toast.error("Unable to establish a database connection!!");
+      }
     }
-  );
+  });
 
   return (
     clickLogin && (
@@ -57,8 +65,8 @@ export default function Login() {
                   className="w-6 h-6"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     d="M6 18L18 6M6 6l12 12"
                   />
                 </svg>
