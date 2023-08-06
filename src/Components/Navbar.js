@@ -12,6 +12,8 @@ export default function Navbar() {
           <svg
             onClick={() => {
               setHamBurgur(true);
+              setclickSignup(false);
+              setclickLogin(false);
             }}
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -87,6 +89,8 @@ export default function Navbar() {
                 className="cursor-pointer p-1 md:hover:scale-125 hover:transition-all delay-100"
                 onClick={() => {
                   setclickLogin(true);
+                  setclickSignup(false);
+                  setHamBurgur(false);
                 }}
               >
                 Log in
@@ -95,6 +99,8 @@ export default function Navbar() {
                 className="cursor-pointer p-1 md:hover:scale-125 hover:transition-all delay-100"
                 onClick={() => {
                   setclickSignup(true);
+                  setclickLogin(false);
+                  setHamBurgur(false);
                 }}
               >
                 Sign up

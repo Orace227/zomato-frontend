@@ -3,7 +3,7 @@ export const name_validation = {
   label: "name",
   type: "text",
   id: "name",
-  placeholder: "write your name ...",
+  placeholder: "Write Your Name ...",
   validation: {
     required: {
       value: true,
@@ -21,7 +21,7 @@ export const desc_validation = {
   label: "description",
   multiline: true,
   id: "description",
-  placeholder: "write description ...",
+  placeholder: "Write Description ...",
   validation: {
     required: {
       value: true,
@@ -39,7 +39,7 @@ export const password_validation = {
   label: "password",
   type: "password",
   id: "password",
-  placeholder: "type password ...",
+  placeholder: "Enter Your Password ...",
   validation: {
     required: {
       value: true,
@@ -75,7 +75,7 @@ export const email_validation = {
   label: "email address",
   type: "email",
   id: "email",
-  placeholder: "write a random email address",
+  placeholder: "Enter Your Email Address ...",
   validation: {
     required: {
       value: true,
