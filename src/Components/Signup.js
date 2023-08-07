@@ -20,11 +20,15 @@ export default function Signup() {
 
   const onSubmit = methods.handleSubmit(async ({ email, name, password }) => {
     try {
-      let signedUser = await axios.post("/signup", {
-        username: name,
-        email,
-        password,
-      });
+      let signedUser = await axios.post(
+        "/signup",
+        {
+          username: name,
+          email,
+          password,
+        },
+        { withCredentials: true },
+      );
       if (signedUser) {
         toast.success("Congratulations!!! You have signed up");
         setclickSignup(false);

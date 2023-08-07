@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { loginContext } from "../contexts/loginContext";
 import Input from "./Input";
 import { FormProvider, useForm } from "react-hook-form";
@@ -11,19 +11,42 @@ import { toast } from "react-hot-toast";
 import { UserContext } from "../contexts/UserContext";
 
 export default function Login() {
-  const { clickLogin, setclickLogin } = useContext(loginContext);
+  const { setId, setusername } = useContext(UserContext);
+  const { clickLogin, setclickLogin, setclickSignup } =
+    useContext(loginContext);
   const [success, setSuccess] = useState(false);
   const methods = useForm();
 
+  // useEffect(() => {
+  //   const fetchUserData = async () => {
+  //     try {
+  //       const userData = await axios.get("/profile", {
+  //         credentials: "include",
+  //       });
+  //       setId(userData.data.id);
+  //       setusername(userData.data.username);
+  //     } catch (err) {
+  //       if (err) {
+  //         setclickSignup(true);
+  //       }
+  //     }
+  //   };
+  //   fetchUserData();
+  // }, []);
   const onSubmit = methods.handleSubmit(async ({ email, password }, ev) => {
     try {
       ev.preventDefault();
-      let Loggedin = await axios.post("/login", {
-        email,
-        password,
-      });
+      let Loggedin = await axios.post(
+        "/login",
+        {
+          email,
+          password,
+        },
+        { withCredentials: true }
+      );
       if (Loggedin) {
         console.log(Loggedin.data);
+
         toast.success("Congratulations!! You are Logged in");
         setSuccess(true);
         setclickLogin(false);

@@ -12,14 +12,13 @@ export const UserContextProvider = ({ children }) => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const userData = await axios.get("/profile");
+        const userData = await axios.get("/profile", { withCredentials: true });
         setId(userData.data.id);
         setusername(userData.data.username);
       } catch (err) {
         if (err) {
           setclickSignup(true);
         }
-        // console.log(err.message);
       }
     };
 

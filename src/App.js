@@ -15,6 +15,7 @@ import Abd from "./Components/Abd";
 import { Toaster } from "react-hot-toast";
 
 function App() {
+  axios.defaults.baseURL = "http://localhost:5000";
   return (
     <>
       <Router>
