@@ -6,6 +6,7 @@ export const UserContext = createContext({});
 
 export const UserContextProvider = ({ children }) => {
   const [username, setusername] = useState("");
+  const [loggedUser, setloggedUser] = useState({});
   const [id, setId] = useState();
   const { setclickSignup } = useContext(loginContext);
 
@@ -24,8 +25,18 @@ export const UserContextProvider = ({ children }) => {
 
     fetchUserData();
   }, []);
+
+  useEffect(() => {
+    const storedLoggedUser = localStorage.getItem("loggedUser");
+    if (storedLoggedUser) {
+      setloggedUser(JSON.parse(storedLoggedUser));
+    }
+  }, []);
+
   return (
-    <UserContext.Provider value={{ id, setId, username, setusername }}>
+    <UserContext.Provider
+      value={{ id, setId, username, setusername, loggedUser, setloggedUser }}
+    >
       {children}
     </UserContext.Provider>
   );

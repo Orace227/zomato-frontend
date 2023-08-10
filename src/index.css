@@ -20,3 +20,26 @@
     z-index: 10;
 
 }
+.sidebar1 {
+    display: flex;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.65);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    width: 310px;
+    height: 500px;
+    color: black;
+    position: relative;
+    left: -200px;
+    transform: translateX(200px);
+    z-index: 10;
+}
+#li:hover {
+    background-image: linear-gradient(to right, #efefef, #f0d8f5, #f4aad4, #f97a9a, #eb4e4e);
+    transition: all;
+    transition-delay: 1000;
+    cursor: pointer;
+}

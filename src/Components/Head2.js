@@ -3,9 +3,9 @@ import React from "react";
 export default function Head2() {
   return (
     <>
-      <div className=" mt-10 overflow-hidden flex flex-col items-center justify-center ">
-        <div className=" mt-10 pl-4 pr-14 ">
-          <p className="text-4xl font-semibold tracking-wider 	">Collections</p>
+      <div className=" mt-10 overflow-hidden flex flex-col items-center justify-around ">
+        <div className="p-3">
+          <p className="text-4xl font-semibold tracking-wider">Collections</p>
           <p className="text-xl pt-3 text-justify">
             Explore curated lists of top restaurants, cafes, pubs, and bars in
             Ahmedabad, based on trends
@@ -14,7 +14,7 @@ export default function Head2() {
             </a>
           </p>
 
-          <div className="flex justify-center flex-col md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 pt-10">
+          <div className="flex justify-around items-center gap-4 mt-4 flex-wrap sm:flex sm:flex-row sm:justify-around ">
             <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-lg overflow-hidden">
               <img
                 src="https://b.zmtcdn.com/data/collections/bfa5063b43c9b8f6c9c3b1a37c815d3b_1675250239.jpg?output-format=webp"
@@ -82,7 +82,6 @@ export default function Head2() {
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </div>

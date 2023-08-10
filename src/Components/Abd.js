@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar_ahm from "./Navbar_ahm";
+import NabarAhm from "./NavbarAhm";
 import Options from "./Options";
 import Slider from "./Slider";
 import Slider_2 from "./Slider_2";
@@ -10,12 +10,14 @@ import Footer from "./Footer";
 import { LoginContextProvider } from "../contexts/loginContext";
 import { DropdownItemContextProvider } from "../contexts/DropdownItemContext";
 import Filter from "./Filter";
+import Card from "./Card";
 
 export default function Abd() {
+  document.title = "Ahmedabad | Zomato";
   return (
     <>
       <LoginContextProvider>
-        <Navbar_ahm />
+        <NabarAhm />
         <Login />
         <Signup />
       </LoginContextProvider>
@@ -23,6 +25,7 @@ export default function Abd() {
       <Filter />
       <Slider />
       <Slider_2 />
+      <Card />
       <Options />
       <DropdownItemContextProvider>
         <Footer />

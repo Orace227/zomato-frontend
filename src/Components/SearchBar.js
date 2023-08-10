@@ -38,7 +38,7 @@ export default function SearchBar(props) {
         <div
           className={`w-[320px] relative ${props.bottom == 20 ? "mb-20" : ""} ${
             props.height == 7 ? "-top-7" : ""
-          } md:w-[410px] lg:w-[600px]  flex justify-center bg-white border rounded-md shadow-md`}
+          } sm:w-[350px] md:w-[410px] lg:w-[600px]  flex justify-center bg-white border rounded-md shadow-md`}
         >
           <div className=" ml-[67px] rounded-md text-black flex flex-col sm:flex-row">
             <div className=" text-black flex justify-end">

@@ -27,10 +27,12 @@ export default function Signup() {
           email,
           password,
         },
-        { withCredentials: true },
+        { withCredentials: true }
       );
       if (signedUser) {
         toast.success("Congratulations!!! You have signed up");
+        // console.log(signedUser.data);
+        localStorage.setItem("loggedUser", JSON.stringify(signedUser.data));
         setclickSignup(false);
         setSuccess(true);
         methods.reset();

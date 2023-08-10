@@ -3,10 +3,10 @@ import React from "react";
 export default function Head() {
   return (
     <>
-      <div className=" mt-20 ">
-        <div className="flex flex-wrap gap-20 justify-center">
-          <div className="pl-2 pr-2 w-full sm:w-1/2 md:w-1/3 lg:w-1/4">
-            <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow transition-transform hover:scale-105 overflow-hidden">
+      <div className=" mt-20 flex justify-around items-center">
+        <div className="flex flex-wrap gap-20 items-center justify-around">
+          <div className="pl-2 pr-2">
+            <div className="max-w-md bg-white border border-gray-200 rounded-lg shadow transition-transform hover:scale-105 overflow-hidden">
               <div className="relative">
                 <a href="/">
                   <img
@@ -30,8 +30,8 @@ export default function Head() {
             </div>
           </div>
 
-          <div className="pl-2 pr-2 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 sm:mt-0">
-            <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow transition-transform hover:scale-105 overflow-hidden">
+          <div className="pl-2 pr-2 sm:mt-0">
+            <div className="max-w-md bg-white border border-gray-200 rounded-lg shadow transition-transform hover:scale-105 overflow-hidden">
               <div className="relative">
                 <a href="/">
                   <img

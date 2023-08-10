@@ -5,7 +5,7 @@ export default function DeliveryDining() {
   const [color1, setColor1] = useState(false);
   return (
     <>
-      <div className="md:flex md:flex-row gap-4 md:ml-64 ">
+      <div className=" sm:flex sm:flex-row sm:justify-center md:flex md:flex-row gap-4 md:justify-start md:ml-[290px] ">
         {/* delivery section */}
         <div
           className="flex flex-col justify-center items-center hover:cursor-pointer"

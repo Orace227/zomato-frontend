@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const AccordionItem = ({ title, content }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,12 +16,17 @@ const AccordionItem = ({ title, content }) => {
         >
           <h3 className="text-gray-500">{title}</h3>
           <svg
-            className={`w-5 h-5 ${isOpen ? 'transform rotate-180' : ''}`}
+            className={`w-5 h-5 ${isOpen ? "transform rotate-180" : ""}`}
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
           >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M19 9l-7 7-7-7"
+            ></path>
           </svg>
         </div>
         {isOpen && <div className="px-4 py-2 bg-white">{content}</div>}
@@ -32,14 +37,71 @@ const AccordionItem = ({ title, content }) => {
 
 const CityGrid = () => {
   const cities = [
-    "Delhi", "NCR", "Kolkata", "Mumbai", "Bengaluru", "Pune", "Hyderabad", "Chennai", "Lucknow",
-    "Kochi", "Jaipur", "Ahmedabad", "Chandigarh", "Goa", "Indore", "Gangtok", "Nashik", "Ooty",
-    "Shimla", "Ludhiana", "Guwahati", "Amritsar", "Kanpur", "Allahabad", "Aurangabad", "Bhopal",
-    "Ranchi", "Visakhapatnam", "Bhubaneswar", "Coimbatore", "Mangalore", "Vadodara", "Nagpur",
-    "Agra", "Dehradun", "Mysore", "Puducherry", "Surat", "Varanasi", "Patna", "Udaipur", "Srinagar",
-    "Khajuraho", "Neemrana", "Cuttack", "Trivandrum", "Haridwar", "Leh", "Pushkar", "Rajkot",
-    "Madurai", "Kozhikode", "Alappuzha", "Thrissur", "Manipal", "Vijayawada", "Jodhpur", "Kota",
-    "Ajmer", "Mussoorie", "Rishikesh", "Jalandhar", "Jammu", "Manali", "Dharamshala"
+    "Delhi",
+    "NCR",
+    "Kolkata",
+    "Mumbai",
+    "Bengaluru",
+    "Pune",
+    "Hyderabad",
+    "Chennai",
+    "Lucknow",
+    "Kochi",
+    "Jaipur",
+    "Ahmedabad",
+    "Chandigarh",
+    "Goa",
+    "Indore",
+    "Gangtok",
+    "Nashik",
+    "Ooty",
+    "Shimla",
+    "Ludhiana",
+    "Guwahati",
+    "Amritsar",
+    "Kanpur",
+    "Allahabad",
+    "Aurangabad",
+    "Bhopal",
+    "Ranchi",
+    "Visakhapatnam",
+    "Bhubaneswar",
+    "Coimbatore",
+    "Mangalore",
+    "Vadodara",
+    "Nagpur",
+    "Agra",
+    "Dehradun",
+    "Mysore",
+    "Puducherry",
+    "Surat",
+    "Varanasi",
+    "Patna",
+    "Udaipur",
+    "Srinagar",
+    "Khajuraho",
+    "Neemrana",
+    "Cuttack",
+    "Trivandrum",
+    "Haridwar",
+    "Leh",
+    "Pushkar",
+    "Rajkot",
+    "Madurai",
+    "Kozhikode",
+    "Alappuzha",
+    "Thrissur",
+    "Manipal",
+    "Vijayawada",
+    "Jodhpur",
+    "Kota",
+    "Ajmer",
+    "Mussoorie",
+    "Rishikesh",
+    "Jalandhar",
+    "Jammu",
+    "Manali",
+    "Dharamshala",
   ];
 
   return (
@@ -55,9 +117,11 @@ const CityGrid = () => {
 
 const Appp = () => {
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center container-md">
       <div className="w-[300px] overflow-hidden md:w-[1200px] ">
-        <h2 className="text-2xl font-semibold mt-16">Explore options near me</h2>
+        <h2 className="text-2xl font-semibold mt-16">
+          Explore options near me
+        </h2>
         <div className="pt-4 md:pt-[50px] w-full  text-gray-500 text-[17px]">
           <AccordionItem
             title="Popular cuisines near me"

@@ -11,28 +11,11 @@ import { toast } from "react-hot-toast";
 import { UserContext } from "../contexts/UserContext";
 
 export default function Login() {
-  const { setId, setusername } = useContext(UserContext);
+  const { setloggedUser } = useContext(UserContext);
   const { clickLogin, setclickLogin, setclickSignup } =
     useContext(loginContext);
   const [success, setSuccess] = useState(false);
   const methods = useForm();
-
-  // useEffect(() => {
-  //   const fetchUserData = async () => {
-  //     try {
-  //       const userData = await axios.get("/profile", {
-  //         credentials: "include",
-  //       });
-  //       setId(userData.data.id);
-  //       setusername(userData.data.username);
-  //     } catch (err) {
-  //       if (err) {
-  //         setclickSignup(true);
-  //       }
-  //     }
-  //   };
-  //   fetchUserData();
-  // }, []);
   const onSubmit = methods.handleSubmit(async ({ email, password }, ev) => {
     try {
       ev.preventDefault();
@@ -45,20 +28,20 @@ export default function Login() {
         { withCredentials: true }
       );
       if (Loggedin) {
-        console.log(Loggedin.data);
-
         toast.success("Congratulations!! You are Logged in");
+        localStorage.setItem("loggedUser", JSON.stringify(Loggedin.data));
         setSuccess(true);
         setclickLogin(false);
         methods.reset();
+        window.location.reload();
       }
     } catch (error) {
-      // console.log(error.message);
+      console.log(error.message);
       if (error.message === "Network Error") {
         toast.error("Unable to establish a database connection!!");
       }
-      if (error.message === "Request failed with status code 401") {
-        toast.error("Unable to establish a database connection!!");
+      if (error.message === "Request failed with status code 404") {
+        toast.error("Check your credentials and try again!!");
       }
     }
   });
