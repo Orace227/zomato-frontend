@@ -8,6 +8,9 @@ export const UserContextProvider = ({ children }) => {
   const [username, setusername] = useState("");
   const [loggedUser, setloggedUser] = useState({});
   const [id, setId] = useState();
+  const [cordinets, setCordinets] = useState({});
+  const [location, setLocation] = useState("");
+
   const { setclickSignup } = useContext(loginContext);
 
   useEffect(() => {
@@ -35,7 +38,18 @@ export const UserContextProvider = ({ children }) => {
 
   return (
     <UserContext.Provider
-      value={{ id, setId, username, setusername, loggedUser, setloggedUser }}
+      value={{
+        id,
+        setId,
+        username,
+        setusername,
+        loggedUser,
+        setloggedUser,
+        location,
+        setLocation,
+        cordinets,
+        setCordinets,
+      }}
     >
       {children}
     </UserContext.Provider>

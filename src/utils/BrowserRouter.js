@@ -1,37 +1,19 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Abd from "../Components/Abd";
-import { Toaster } from "react-hot-toast";
 import Profilepage from "../Components/ProfilePage";
 import Panel from "../Components/Panel";
-import Footer from "../Components/Footer";
-import Head from "../Components/Head";
-import Head2 from "../Components/Head2";
-import Login from "../Components/Login";
-import Navbar from "../Components/Navbar";
-import Options from "../Components/Options";
-import Signup from "../Components/Signup";
+import CardPage from "../Components/CardPage";
+import Overview from "../Components/Overview";
+import OrderOnline from "../Components/OrderOnline";
+import HomePage from "../Components/HomePage";
 
 export default function BrowserRouter() {
   return (
     <div>
       <Router>
         <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <Navbar />
-                <Login />
-                <Signup />
-                <Toaster />
-                <Head />
-                <Head2 />
-                <Options />
-                <Footer />
-              </>
-            }
-          />
+          <Route path="/" element={<HomePage />} />
           <Route path="/ahmedabad" element={<Abd />} />
           <Route
             path="/profile"
@@ -171,6 +153,18 @@ export default function BrowserRouter() {
                 }
               />
             }
+          />{" "}
+          <Route
+            path="/ahmedabad/product details/:id"
+            element={<CardPage component={<Overview />} />}
+          />
+          <Route
+            path="/ahmedabad/product details/overview/:id"
+            element={<CardPage component={<Overview />} />}
+          />
+          <Route
+            path="/ahmedabad/product details/order online/:id"
+            element={<CardPage component={<OrderOnline />} />}
           />
         </Routes>
       </Router>

@@ -6,6 +6,7 @@ import Login from "./Login";
 import Signup from "./Signup";
 import { DropdownItemContextProvider } from "../contexts/DropdownItemContext";
 import Footer from "./Footer";
+import EditProfile from "./EditProfile";
 
 export default function ProfilePage(props) {
   document.title = "Profile | Zomato";
@@ -15,6 +16,7 @@ export default function ProfilePage(props) {
         <NavbarProfile />
         <Login />
         <Signup />
+        <EditProfile />
       </LoginContextProvider>
       <div className="container-sm flex ">
         <div className="hidden md:block">

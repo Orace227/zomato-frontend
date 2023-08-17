@@ -3,7 +3,7 @@ import React from "react";
 export default function Filter() {
   return (
     <>
-      <div className="flex flex-row justify-center lg:justify-start lg:ml-[290px] gap-3 mt-4">
+      <div className="flex flex-row justify-center lg:justify-center lg:-ml-[470px] gap-3 mt-4">
         <button className="btn border-1 border-gray-300 text-gray-400 rounded-md">
           Filters
         </button>

@@ -16,22 +16,22 @@ export default function Actions() {
             <ul className="flex flex-col gap-2 relative">
               <li>
                 <Link
-                  className="px-[100px] text-start py-2"
-                  id="li"
+                  className="px-[100px] li text-start py-2"
+                  
                   to="/profile/reviews"
                 >
                   Reviews
                 </Link>
               </li>
               <li>
-                <Link className="px-[103px] py-2" id="li" to="/profile/photos">
+                <Link className="px-[103px] li py-2"  to="/profile/photos">
                   Photos
                 </Link>
               </li>
               <li>
                 <Link
-                  className="px-[95px] py-2"
-                  id="li"
+                  className="px-[95px] li py-2"
+                  
                   to="/profile/followers"
                 >
                   Followers
@@ -39,8 +39,8 @@ export default function Actions() {
               </li>
               <li>
                 <Link
-                  className="px-[70px] py-2"
-                  id="li"
+                  className="px-[70px] li py-2"
+                  
                   to="/profile/recently viewed"
                 >
                   Recently Viewed
@@ -48,8 +48,8 @@ export default function Actions() {
               </li>
               <li>
                 <Link
-                  className="px-[88px] py-2"
-                  id="li"
+                  className="px-[88px] li py-2"
+                  
                   to="/profile/bookmarks"
                 >
                   Bookmarks
@@ -57,8 +57,8 @@ export default function Actions() {
               </li>
               <li>
                 <Link
-                  className="px-[90px] py-2"
-                  id="li"
+                  className="px-[90px] li py-2"
+                  
                   to="/profile/blog posts"
                 >
                   Blog Posts
@@ -76,8 +76,8 @@ export default function Actions() {
             <ul className="flex flex-col relative gap-2 left-2 ">
               <li>
                 <Link
-                  className="px-[77px] py-2"
-                  id="li"
+                  className="px-[77px] li py-2"
+                  
                   to="/profile/order history"
                 >
                   Order History
@@ -85,8 +85,8 @@ export default function Actions() {
               </li>
               <li>
                 <Link
-                  className="px-[75px] py-2"
-                  id="li"
+                  className="px-[75px] li py-2"
+                  
                   to="/profile/my addresses"
                 >
                   My Addresses
@@ -94,8 +94,8 @@ export default function Actions() {
               </li>
               <li>
                 <Link
-                  className="px-[69px] py-2"
-                  id="li"
+                  className="px-[69px] li py-2"
+                  
                   to="/profile/favorite orders"
                 >
                   Favorite Orders

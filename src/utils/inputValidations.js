@@ -55,7 +55,7 @@ export const password_validation = {
 
 export const con_password_validation = {
   name: "con_password",
-  label: "con_password",
+  label: "confirm password",
   type: "password",
   id: "con_password",
   placeholder: "Confirm Your Password ...",

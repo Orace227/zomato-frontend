@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Head2() {
   return (
@@ -9,9 +10,15 @@ export default function Head2() {
           <p className="text-xl pt-3 text-justify">
             Explore curated lists of top restaurants, cafes, pubs, and bars in
             Ahmedabad, based on trends
-            <a className="pl-10 text-red-500 hover:text-red-800" href="/">
+            <Link
+              className="pl-10 text-red-500 hover:text-red-800"
+              to="/ahmedabad"
+              onClick={() => {
+                window.scrollTo(0, 0);
+              }}
+            >
               All Collections in Ahmedabad &rarr;
-            </a>
+            </Link>
           </p>
 
           <div className="flex justify-around items-center gap-4 mt-4 flex-wrap sm:flex sm:flex-row sm:justify-around ">
