@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import cards from "../utils/cards";
+import axios from "axios";
 
 export default function Card() {
   let cardsData = cards();
+
+  const storeProducts = () => {
+    const data = axios.post("/AddProducts", { cards: cardsData });
+  };
+
+  // storeProducts();
   return (
     <div className="container-md md:container-md flex flex-col sm:grid md:grid sm:grid-cols-2 lg:grid lg:grid-cols-3  justify-around">
-      {cardsData.map((cardData, index) => (
+      {cardsData.map((cardData) => (
         <Link
           to={`/ahmedabad/product details/${cardData.id}`}
           onClick={() => {

@@ -3,6 +3,9 @@ import LocationCard from "./LocationCard";
 import { useParams } from "react-router-dom";
 
 export default function Overview() {
+
+ 
+
   const { id } = useParams();
   console.log(id);
   return (

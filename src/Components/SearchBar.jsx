@@ -14,8 +14,8 @@ export default function SearchBar(props) {
     const userLocation = await axios(
       `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=18&addressdetails=1`
     );
-    console.log(userLocation.data);
-    setLocation(userLocation.data.address.amenity);
+    // console.log(userLocation.data);
+    setLocation(userLocation.data.display_name);
     toast.success("We get your location!!");
   }
 
@@ -39,7 +39,6 @@ export default function SearchBar(props) {
     const options = {
       enableHighAccuracy: true,
       accuracy: 5,
-      timeout: 4000,
       maximumAge: 0,
     };
 
@@ -59,10 +58,7 @@ export default function SearchBar(props) {
           } `}
         >
           <div className="flex gap-2 p-2 justify-center  text-black">
-            <div className="truncate w-[250px] ml-2">
-              {" "}
-              {location}, Ahmedabad
-            </div>
+            <div className="truncate w-[250px] ml-2"> {location}</div>
             <div>
               <svg
                 onClick={() => {
