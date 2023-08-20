@@ -12,7 +12,9 @@ export default function Navbar() {
   const { setclickLogin, setclickSignup } = useContext(loginContext);
   const { username, loggedUser } = useContext(UserContext);
   const [showMenu, setShowMenu] = useState(false);
-  // console.log(loggedUser);
+  if (loggedUser) {
+    setShowMenu(true);
+  }
   return (
     <>
       {/* hamburgur icon */}
