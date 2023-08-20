@@ -4,13 +4,11 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 export default function Card() {
-  // let cardsData = [];
   const [cardsData, setCardsData] = useState([]);
   const GetProducts = async () => {
     try {
       const Products = await axios.post("/GetProducts");
       setCardsData(Products.data);
-      // console.log(Products.data);
     } catch (err) {
       console.log(err);
     }
