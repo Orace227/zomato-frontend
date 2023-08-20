@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import Category from "./Category";
 import { DropdownItemContext } from "../contexts/DropdownItemContext";
 import ProfileDropdown from "./ProfileDropdown";
+const [showMenu, setShowMenu] = useState(false);
 
 export default function NavbarAhm(props) {
   const { setclickLogin, setclickSignup } = useContext(loginContext);
@@ -57,8 +58,9 @@ export default function NavbarAhm(props) {
         <div>
           <nav>
             <ul className="md:flex gap-7 p-2 mt-[5px] ">
-              {username && <ProfileDropdown color="1" />}
-              {!username && (
+              {showMenu ? (
+                <ProfileDropdown color="1" />
+              ) : (
                 <ul className="md:flex gap-7">
                   <li
                     className="cursor-pointer p-1 md:hover:scale-125 hover:transition-all delay-100"
