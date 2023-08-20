@@ -9,10 +9,11 @@ export default function ProfileDropdown(props) {
   const [hamburgur, setHamBurgur] = useState(false);
   const [dropdownInformation, setdropdownInformation] = useState(false);
   const { username, loggedUser } = useContext(UserContext);
+  const [showMenu, setShowMenu] = useState(false);
 
   return (
     <>
-      {username && (
+      {showMenu && (
         <li className=" flex flex-row gap-2 my-1 cursor-pointer p-1">
           <div className=" flex items-center relative -top-2 text-lg md:border-3  p-[5px] px-[13px] text-white rounded-full bg-red-500">
             {loggedUser?.username?.charAt(0).toUpperCase()}
