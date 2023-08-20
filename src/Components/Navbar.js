@@ -96,7 +96,7 @@ export default function Navbar() {
                   }}
                   className="hover:text-white"
                 >
-                  Ahmedabad
+                  Ahmedabad123
                 </Link>
               </li>
               {showMenu ? (
