@@ -57,7 +57,7 @@ export default function NavbarAhm(props) {
         <div>
           <nav>
             <ul className="md:flex gap-7 p-2 mt-[5px] ">
-              {username && <ProfileDropdown />}
+              {username && <ProfileDropdown color="1" />}
               {!username && (
                 <ul className="md:flex gap-7">
                   <li

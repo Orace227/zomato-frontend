@@ -14,7 +14,7 @@ export default function ProfileDropdown(props) {
     <>
       <li className=" flex flex-row gap-2 my-1 cursor-pointer p-1">
         <div className=" flex items-center relative -top-2 text-lg md:border-3  p-[5px] px-[13px] text-white rounded-full bg-red-500">
-          {loggedUser.username.charAt(0).toUpperCase()}
+          {loggedUser?.username?.charAt(0).toUpperCase()}
         </div>
         <div>
           <button
@@ -30,8 +30,8 @@ export default function ProfileDropdown(props) {
                 : setdropdownInformation(true);
             }}
           >
-            {loggedUser.username.charAt(0).toUpperCase()}
-            {loggedUser.username.slice(1)}
+            {loggedUser?.username?.charAt(0).toUpperCase()}
+            {loggedUser?.username?.slice(1)}
             <svg
               className="w-2.5 h-2.5 ml-2.5"
               aria-hidden="true"
@@ -57,10 +57,10 @@ export default function ProfileDropdown(props) {
           >
             <div className="px-4 py-3 text-sm text-gray-900">
               <div>
-                {loggedUser.username.charAt(0).toUpperCase()}
-                {loggedUser.username.slice(1)}
+                {loggedUser?.username?.charAt(0).toUpperCase()}
+                {loggedUser?.username?.slice(1)}
               </div>
-              <div className="font-medium truncate">{loggedUser.email}</div>
+              <div className="font-medium truncate">{loggedUser?.email}</div>
             </div>
             <hr />
             <ul
