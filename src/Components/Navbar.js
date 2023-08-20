@@ -11,7 +11,7 @@ export default function Navbar() {
   // const [dropdownInformation, setdropdownInformation] = useState(false);
   const { setclickLogin, setclickSignup } = useContext(loginContext);
   const { username, loggedUser } = useContext(UserContext);
-
+  const [showMenu, setShowMenu] = useState(false);
   // console.log(loggedUser);
   return (
     <>
@@ -99,7 +99,7 @@ export default function Navbar() {
                   Ahmedabad
                 </Link>
               </li>
-              {username == "" ? (
+              {showMenu ? (
                 <ul className="md:flex gap-7">
                   <li
                     className="cursor-pointer p-1 md:hover:scale-125 hover:transition-all delay-100"
