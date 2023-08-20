@@ -7,9 +7,9 @@ import { Link } from "react-router-dom";
 import Category from "./Category";
 import { DropdownItemContext } from "../contexts/DropdownItemContext";
 import ProfileDropdown from "./ProfileDropdown";
-const [showMenu, setShowMenu] = useState(false);
 
 export default function NavbarAhm(props) {
+  const [showMenu, setShowMenu] = useState(false);
   const { setclickLogin, setclickSignup } = useContext(loginContext);
   const { hamburgur, setHamBurgur } = useContext(DropdownItemContext);
 
