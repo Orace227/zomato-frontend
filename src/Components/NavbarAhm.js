@@ -9,12 +9,12 @@ import { DropdownItemContext } from "../contexts/DropdownItemContext";
 import ProfileDropdown from "./ProfileDropdown";
 
 export default function NavbarAhm(props) {
-  const [showMenu, setShowMenu] = useState(false);
+  const { showMenu, setShowMenu } = useContext(DropdownItemContext);
   const { setclickLogin, setclickSignup } = useContext(loginContext);
   const { hamburgur, setHamBurgur } = useContext(DropdownItemContext);
 
-  const [dropdownInformation, setdropdownInformation] = useState(false);
-  const { username, loggedUser } = useContext(UserContext);
+  // const [dropdownInformation, setdropdownInformation] = useState(false);
+  // const { username, loggedUser } = useContext(UserContext);
 
   return (
     <>
@@ -59,7 +59,7 @@ export default function NavbarAhm(props) {
           <nav>
             <ul className="md:flex gap-7 p-2 mt-[5px] ">
               {showMenu ? (
-                <ProfileDropdown color="1" />
+                <ProfileDropdown color="2" />
               ) : (
                 <ul className="md:flex gap-7">
                   <li

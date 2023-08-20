@@ -51,7 +51,7 @@ export default function NavbarProfile() {
 
         <nav>
           <ul className="md:flex gap-7 p-2 mt-[5px] ">
-            {username && <ProfileDropdown />}
+            {username && <ProfileDropdown color="3" />}
             {!username && (
               <ul className="md:flex gap-7">
                 <li

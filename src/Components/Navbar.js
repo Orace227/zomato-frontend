@@ -5,17 +5,16 @@ import { UserContext } from "../contexts/UserContext";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import ProfileDropdown from "./ProfileDropdown";
+import { DropdownItemContext } from "../contexts/DropdownItemContext";
 
 export default function Navbar() {
   const [hamburgur, setHamBurgur] = useState(false);
-  // const [dropdownInformation, setdropdownInformation] = useState(false);
   const { setclickLogin, setclickSignup } = useContext(loginContext);
   const { username, loggedUser } = useContext(UserContext);
-  const [showMenu, setShowMenu] = useState(false);
+  const { showMenu, setShowMenu } = useContext(DropdownItemContext);
 
   useEffect(() => {
-    console.log(loggedUser);
-    if (loggedUser) {
+    if (localStorage.getItem("loggedUser")) {
       setShowMenu(true);
     }
   }, []);

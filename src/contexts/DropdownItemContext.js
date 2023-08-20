@@ -6,6 +6,7 @@ export const DropdownItemContextProvider = ({ children }) => {
   const [Title, setTitle] = useState("India");
   const [language, setlanguage] = useState("English");
   const [hamburgur, setHamBurgur] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
 
   return (
     <DropdownItemContext.Provider
@@ -16,6 +17,8 @@ export const DropdownItemContextProvider = ({ children }) => {
         setlanguage,
         hamburgur,
         setHamBurgur,
+        showMenu,
+        setShowMenu,
       }}
     >
       {children}
