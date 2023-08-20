@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { loginContext } from "../contexts/loginContext";
 import { UserContext } from "../contexts/UserContext";
 import axios from "axios";
@@ -10,7 +10,12 @@ export default function ProfileDropdown(props) {
   const [dropdownInformation, setdropdownInformation] = useState(false);
   const { username, loggedUser } = useContext(UserContext);
   const [showMenu, setShowMenu] = useState(false);
-
+  useEffect(() => {
+    console.log(loggedUser);
+    if (loggedUser) {
+      setShowMenu(true);
+    }
+  }, []);
   return (
     <>
       {showMenu && (

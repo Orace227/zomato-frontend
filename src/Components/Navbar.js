@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { loginContext } from "../contexts/loginContext";
 import SearchBar from "./SearchBar";
 import { UserContext } from "../contexts/UserContext";
@@ -12,9 +12,14 @@ export default function Navbar() {
   const { setclickLogin, setclickSignup } = useContext(loginContext);
   const { username, loggedUser } = useContext(UserContext);
   const [showMenu, setShowMenu] = useState(false);
-  if (loggedUser) {
-    setShowMenu(true);
-  }
+
+  useEffect(() => {
+    console.log(loggedUser);
+    if (loggedUser) {
+      setShowMenu(true);
+    }
+  }, []);
+
   return (
     <>
       {/* hamburgur icon */}
