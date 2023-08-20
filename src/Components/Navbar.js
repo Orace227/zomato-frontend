@@ -99,8 +99,9 @@ export default function Navbar() {
                   Ahmedabad
                 </Link>
               </li>
-              {username && <ProfileDropdown color="1" />}
-              {username == "" && (
+              {username ? (
+                <ProfileDropdown color="1" />
+              ) : (
                 <ul className="md:flex gap-7">
                   <li
                     className="cursor-pointer p-1 md:hover:scale-125 hover:transition-all delay-100"
