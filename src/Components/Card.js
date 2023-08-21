@@ -19,7 +19,7 @@ export default function Card() {
         }
       });
 
-      console.log(uniqueObjects);
+      // console.log(uniqueObjects);
       setCardsData(uniqueObjects);
     } catch (err) {
       console.log(err);

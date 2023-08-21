@@ -2,12 +2,10 @@ import React, { useContext, useEffect, useState } from "react";
 import { loginContext } from "../contexts/loginContext";
 import SearchBar from "./SearchBar";
 import { UserContext } from "../contexts/UserContext";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import Actions from "./Actions";
 import ProfileDropdown from "./ProfileDropdown";
 import { DropdownItemContext } from "../contexts/DropdownItemContext";
-import { toast } from "react-hot-toast";
 
 export default function NavbarProfile() {
   const { setclickLogin, setclickSignup } = useContext(loginContext);

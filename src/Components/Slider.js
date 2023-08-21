@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 const NextIcon = ({ className }) => {
   return (
@@ -41,6 +41,8 @@ const PreviousIcon = ({ className }) => {
 const ImageSlider = ({ images }) => {
   const [startIndex, setStartIndex] = useState(0);
   const [visibleImages, setVisibleImages] = useState(3);
+  const [prevStartIndex, setPrevStartIndex] = useState(null);
+  const [scaleValue, setScaleValue] = useState(0);
 
   useEffect(() => {
     function updateVisibleImages() {
@@ -49,48 +51,77 @@ const ImageSlider = ({ images }) => {
         setVisibleImages(4);
       } else if (screenWidth >= 768) {
         setVisibleImages(2);
-      } else if(screenWidth >=320){
+      } else if (screenWidth >= 320) {
         setVisibleImages(1);
       }
     }
 
     updateVisibleImages();
 
-    window.addEventListener('resize', updateVisibleImages);
-    return () => window.removeEventListener('resize', updateVisibleImages);
+    window.addEventListener("resize", updateVisibleImages);
+    return () => window.removeEventListener("resize", updateVisibleImages);
   }, []);
 
   const handleNext = () => {
-    setStartIndex((prevIndex) => Math.min(prevIndex + 1, images.length - visibleImages));
+    setPrevStartIndex(startIndex);
+    setScaleValue(0); // Reset scale when changing image
+    setStartIndex((prevIndex) =>
+      Math.min(prevIndex + 1, images.length - visibleImages)
+    );
   };
 
   const handlePrev = () => {
+    setPrevStartIndex(startIndex);
+    setScaleValue(0); // Reset scale when changing image
     setStartIndex((prevIndex) => Math.max(prevIndex - 1, 0));
   };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (scaleValue < 100) {
+        setScaleValue((prevScale) => Math.min(prevScale + 5, 100)); // Increase scale by 5, max 100
+      }
+    }, 1); // Interval every 20ms
+
+    return () => clearInterval(interval);
+  }, [scaleValue]);
 
   return (
     <div className="flex align-center justify-center mt-5">
       <button
-        className="text-5xl"
+        className="text-5xl transition-transform transform hover:scale-110 focus:outline-none"
         onClick={handlePrev}
         disabled={startIndex === 0}
       >
         <PreviousIcon className="w-6 h-6" />
       </button>
       <div className="flex overflow-hidden">
-        {images.slice(startIndex, startIndex + visibleImages).map((image, index) => (
-          <div key={index} className="flex flex-col items-center ">
-            <img
-              src={image.src}
-              alt={image.caption}
-              className="max-h-[220px] max-w-[170px] m-[10px] ml-[80px] md:ml-28   rounded-full "
-            />
-            <p className="text-[21px] font-semibold ml-[60px] md:ml-24">{image.caption}</p>
-          </div>
-        ))}
+        {images
+          .slice(startIndex, startIndex + visibleImages)
+          .map((image, index) => (
+            <div
+              key={index}
+              className={`flex flex-col items-center transition-all duration-500 ${
+                startIndex > prevStartIndex ? "slide-in" : "slide-out"
+              }`}
+              style={{
+                transition: `transform ${scaleValue * 0.01}s ease`, // Scale transition
+                transform: `scale(${scaleValue * 0.01})`, // Apply scale
+              }}
+            >
+              <img
+                src={image.src}
+                alt={image.caption}
+                className="max-h-[220px] max-w-[170px] m-[10px] ml-[12px] md:ml-[90px] rounded-full transition-transform transform hover:scale-110"
+              />
+              <p className="text-[21px] font-semibold ml-[px] md:ml-[60px]">
+                {image.caption}
+              </p>
+            </div>
+          ))}
       </div>
       <button
-        className="text-5xl md:ml-12"
+        className="text-5xl md:ml-12 transition-transform transform hover:scale-110 focus:outline-none"
         onClick={handleNext}
         disabled={startIndex + visibleImages >= images.length}
       >
@@ -154,7 +185,9 @@ const App = () => {
 
   return (
     <div className="mt-9 bg-gray-50 h-[350px]">
-      <h1 className="text-3xl ml-16 font-semibold">Inspiration for your first order</h1>
+      <h1 className="text-3xl ml-16 font-semibold">
+        Inspiration for your first order
+      </h1>
       <ImageSlider images={images} />
     </div>
   );

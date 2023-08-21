@@ -3,6 +3,8 @@ import { loginContext } from "../contexts/loginContext";
 import { UserContext } from "../contexts/UserContext";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { toast, Toaster } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export default function ProfileDropdown(props) {
   const { setClickEditProfile } = useContext(loginContext);
@@ -10,12 +12,43 @@ export default function ProfileDropdown(props) {
   const [dropdownInformation, setdropdownInformation] = useState(false);
   const { username, loggedUser } = useContext(UserContext);
   const [showMenu, setShowMenu] = useState(false);
+  const history = useNavigate();
+
+  const DeleteAccount = async () => {
+    let id = await loggedUser._id;
+    const data = await axios.post("/deleteAccount", {
+      id,
+    });
+
+    if (data) {
+      axios.get("/logout", { withCredentials: true }).then(() => {
+        localStorage.removeItem("loggedUser");
+      });
+      toast.success("Account deleted successfully!!");
+      window.location.reload();
+    } else {
+      toast.error("some error occured while deleting your account!!");
+    }
+  };
+
   useEffect(() => {
-    console.log(loggedUser);
+    // console.log(loggedUser);
     if (loggedUser) {
       setShowMenu(true);
     }
   }, []);
+
+  const hendleDeleteUser = () => {
+    let isdelete = window.confirm(
+      "Are you sure you want to delete this profile??"
+    );
+    console.log(isdelete);
+    if (isdelete) {
+      DeleteAccount();
+      history("/");
+    }
+  };
+
   return (
     <>
       <li className=" flex flex-row gap-2 my-1 cursor-pointer p-1">
@@ -106,10 +139,20 @@ export default function ProfileDropdown(props) {
                     className="block px-4 py-2 hover:bg-gray-100"
                     onClick={() => {
                       setClickEditProfile(true);
-                      setHamBurgur(false);
                     }}
                   >
                     Edit Your Profile
+                  </a>
+                </li>
+              )}
+              {props.color == "3" && (
+                <li>
+                  <a
+                    href="#"
+                    className="block px-4 py-2 hover:bg-gray-100"
+                    onClick={hendleDeleteUser}
+                  >
+                    Delete Your Account
                   </a>
                 </li>
               )}
@@ -132,6 +175,7 @@ export default function ProfileDropdown(props) {
             </div>
           </div>
         </div>
+        <Toaster />
       </li>
     </>
   );
