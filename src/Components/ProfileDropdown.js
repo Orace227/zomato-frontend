@@ -24,10 +24,10 @@ export default function ProfileDropdown(props) {
       axios.get("/logout", { withCredentials: true }).then(() => {
         localStorage.removeItem("loggedUser");
       });
-      toast.success("Account deleted successfully!!");
       setTimeout(() => {
         window.location.reload();
       }, 1000);
+      toast.success("Account deleted successfully!!");
     } else {
       toast.error("some error occured while deleting your account!!");
     }
