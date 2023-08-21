@@ -14,6 +14,7 @@ export default function NavbarProfile() {
   const [hamburgur, setHamBurgur] = useState(false);
   const { username, loggedUser } = useContext(UserContext);
   const { toaster } = useContext(DropdownItemContext);
+  const { showMenu, setShowMenu } = useContext(DropdownItemContext);
 
   return (
     <>
@@ -51,8 +52,9 @@ export default function NavbarProfile() {
 
         <nav>
           <ul className="md:flex gap-7 p-2 mt-[5px] ">
-            {username && <ProfileDropdown color="3" />}
-            {!username && (
+            {showMenu ? (
+              <ProfileDropdown color="2" />
+            ) : (
               <ul className="md:flex gap-7">
                 <li
                   className="cursor-pointer p-1 md:hover:scale-125 hover:transition-all delay-100"
