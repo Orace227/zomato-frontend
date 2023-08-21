@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { loginContext } from "../contexts/loginContext";
 import SearchBar from "./SearchBar";
 import { UserContext } from "../contexts/UserContext";
@@ -15,6 +15,11 @@ export default function NavbarProfile() {
   const { username, loggedUser } = useContext(UserContext);
   const { toaster } = useContext(DropdownItemContext);
   const { showMenu, setShowMenu } = useContext(DropdownItemContext);
+  useEffect(() => {
+    if (localStorage.getItem("loggedUser")) {
+      setShowMenu(true);
+    }
+  }, []);
 
   return (
     <>

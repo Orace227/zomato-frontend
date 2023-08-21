@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { loginContext } from "../contexts/loginContext";
 import SearchBar from "./SearchBar";
 import { UserContext } from "../contexts/UserContext";
@@ -13,8 +13,11 @@ export default function NavbarAhm(props) {
   const { setclickLogin, setclickSignup } = useContext(loginContext);
   const { hamburgur, setHamBurgur } = useContext(DropdownItemContext);
 
-  // const [dropdownInformation, setdropdownInformation] = useState(false);
-  // const { username, loggedUser } = useContext(UserContext);
+  useEffect(() => {
+    if (localStorage.getItem("loggedUser")) {
+      setShowMenu(true);
+    }
+  }, []);
 
   return (
     <>
