@@ -69,7 +69,7 @@ export default function Navbar() {
                   />
                 </svg>
               </span>
-              get the app
+              Get the app
             </p>
 
             <div className="md:hidden absolute right-3 top-4 hover:cursor-pointer">

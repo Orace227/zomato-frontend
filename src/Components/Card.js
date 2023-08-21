@@ -8,7 +8,19 @@ export default function Card() {
   const GetProducts = async () => {
     try {
       const Products = await axios.post("/GetProducts");
-      setCardsData(Products.data);
+      const { data } = Products;
+      // console.log(cardsData);
+      const uniqueObjects = [];
+      const seenIds = new Set();
+      data.forEach((obj) => {
+        if (!seenIds.has(obj.id)) {
+          seenIds.add(obj.id);
+          uniqueObjects.push(obj);
+        }
+      });
+
+      console.log(uniqueObjects);
+      setCardsData(uniqueObjects);
     } catch (err) {
       console.log(err);
     }
@@ -17,6 +29,21 @@ export default function Card() {
   useEffect(() => {
     GetProducts();
   }, []);
+
+  // const AddProducts = async () => {
+  //   try {
+  //     const Products = await axios.post("/AddProducts", {
+  //       cards: cardsData[cardsData.length - 1],
+  //     });
+  //     // setCardsData(Products.data);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   AddProducts();
+  // }, []);
 
   return (
     <div className="container-md md:container-md flex flex-col sm:grid md:grid sm:grid-cols-2 lg:grid lg:grid-cols-3  justify-around">
