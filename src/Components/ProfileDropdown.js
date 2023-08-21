@@ -25,7 +25,9 @@ export default function ProfileDropdown(props) {
         localStorage.removeItem("loggedUser");
       });
       toast.success("Account deleted successfully!!");
-      window.location.reload();
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
     } else {
       toast.error("some error occured while deleting your account!!");
     }
