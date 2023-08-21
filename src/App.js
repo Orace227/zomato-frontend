@@ -6,8 +6,8 @@ import { UserContextProvider } from "./contexts/UserContext";
 import BrowserRouter from "./utils/BrowserRouter";
 
 function App() {
-  // axios.defaults.baseURL = "https://zomato-backend-test1.onrender.com";
-  axios.defaults.baseURL = "http://localhost:5000";
+  axios.defaults.baseURL = "https://zomato-backend-test1.onrender.com";
+  // axios.defaults.baseURL = "http://localhost:5000";
   return (
     <>
       <LoginContextProvider>
