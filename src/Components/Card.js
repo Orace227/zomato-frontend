@@ -30,21 +30,7 @@ export default function Card() {
     GetProducts();
   }, []);
 
-  // const AddProducts = async () => {
-  //   try {
-  //     const Products = await axios.post("/AddProducts", {
-  //       cards: cardsData[cardsData.length - 1],
-  //     });
-  //     // setCardsData(Products.data);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   AddProducts();
-  // }, []);
-
+  
   return (
     <div className="container-md md:container-md flex flex-col sm:grid md:grid sm:grid-cols-2 lg:grid lg:grid-cols-3  justify-around">
       {Array.isArray(cardsData)
